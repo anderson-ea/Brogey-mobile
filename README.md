@@ -1,2 +1,2 @@
 # Brogey
-Like Tinder, but for golfers. Created with React Native.
+Mobile app to find golfers near you. Created with React Native.
