@@ -12,10 +12,8 @@ const ModalScreen = () => {
   const [image, setImage] = useState(null);
   const [job, setJob] = useState(null);
   const [age, setAge] = useState(null);
-  const [alcohol, setAlcohol] = useState(null);
-  const [handicap, setHandicap] = useState(null);
 
-  const incompleteForm = !image || !job || !age || !alcohol || !handicap;
+  const incompleteForm = !image || !job || !age;
 
   const updateUserProfile = () => {
     setDoc(doc(db, "users", user.uid), {
@@ -24,8 +22,6 @@ const ModalScreen = () => {
       photoURL: image,
       job: job,
       age: age,
-      alcohol: alcohol,
-      handicap: handicap,
       timestamp: serverTimestamp(),
     })
       .then(() => {
@@ -57,42 +53,23 @@ const ModalScreen = () => {
         placeholder="Enter a Profile Pic URL"
       />
       <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 1: Occupation
+        Step 2: Occupation
       </Text>
       <TextInput
         value={job}
         onChangeText={text => setJob(text)}
         style={tw("text-center text-xl pb-2")} 
-        placeholder="Enter your occupation"
+        placeholder="Enter Your Occupation"
       />
       <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 1: Age
+        Step 3: Age
       </Text>
       <TextInput
         value={age}
         onChangeText={text => setAge(text)}
         style={tw("text-center text-xl pb-2")} 
-        placeholder="Enter your age"
+        placeholder="Enter Your Age"
         keyboardType="numeric"
-      />
-      <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 4: Handicap
-      </Text>
-      <TextInput
-        value={handicap}
-        onChangeText={text => setHandicap(text)}
-        style={tw("text-center text-xl pb-2")} 
-        placeholder="Enter your handicap"
-        keyboardType="numeric"
-      />
-      <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 5: Alcohol Consumption
-      </Text>
-      <TextInput
-        value={alcohol}
-        onChangeText={text => setAlcohol(text)}
-        style={tw("text-center text-xl pb-2")} 
-        placeholder="Enter your alcohol consumption"
       />
       <TouchableOpacity
         onPress={updateUserProfile} 
