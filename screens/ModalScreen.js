@@ -10,18 +10,22 @@ const ModalScreen = () => {
   const { user } = useAuth();
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
-  const [job, setJob] = useState(null);
+  const [drinking, setDrinking] = useState(null);
+  const [walking, setWalking] = useState(null);
+  const [handicap, setHandicap] = useState(null);
   const [age, setAge] = useState(null);
 
-  const incompleteForm = !image || !job || !age;
+  const incompleteForm = !image || !drinking || !age || !walking || !handicap;
 
   const updateUserProfile = () => {
     setDoc(doc(db, "users", user.uid), {
       id: user.uid,
       displayName: user.displayName,
       photoURL: image,
-      job: job,
+      handicap: handicap,
       age: age,
+      drinking: drinking,
+      walking: walking,
       timestamp: serverTimestamp(),
     })
       .then(() => {
@@ -53,16 +57,7 @@ const ModalScreen = () => {
         placeholder="Enter a Profile Pic URL"
       />
       <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 2: Occupation
-      </Text>
-      <TextInput
-        value={job}
-        onChangeText={text => setJob(text)}
-        style={tw("text-center text-xl pb-2")} 
-        placeholder="Enter Your Occupation"
-      />
-      <Text style={tw("text-center p-4 font-bold text-green-400")}>
-        Step 3: Age
+        Step 2: Age
       </Text>
       <TextInput
         value={age}
@@ -70,6 +65,34 @@ const ModalScreen = () => {
         style={tw("text-center text-xl pb-2")} 
         placeholder="Enter Your Age"
         keyboardType="numeric"
+      />
+      <Text style={tw("text-center p-4 font-bold text-green-400")}>
+        Step 3: Handicap
+      </Text>
+      <TextInput
+        value={handicap}
+        onChangeText={text => setHandicap(text)}
+        style={tw("text-center text-xl pb-2")} 
+        placeholder="Enter Your Handicap"
+        keyboardType="numeric"
+      />
+      <Text style={tw("text-center p-4 font-bold text-green-400")}>
+        Step 4: Walking
+      </Text>
+      <TextInput
+        value={walking}
+        onChangeText={text => setWalking(text)}
+        style={tw("text-center text-xl pb-2")} 
+        placeholder="Yes or No"
+      />
+      <Text style={tw("text-center p-4 font-bold text-green-400")}>
+        Step 5: Drinking
+      </Text>
+      <TextInput
+        value={drinking}
+        onChangeText={text => setDrinking(text)}
+        style={tw("text-center text-xl pb-2")} 
+        placeholder="Yes or No"
       />
       <TouchableOpacity
         onPress={updateUserProfile} 
