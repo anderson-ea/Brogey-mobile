@@ -1,2 +1,2 @@
 # Brogey
-Mobile app to find golfers near you. Created using the React Native framework and Firestore Cloud Database. 
+Swipe to find golf partners. Created using the React Native framework and Firestore Cloud Database. 
